@@ -1,0 +1,175 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/home/login",
+			"style": {
+				"navigationBarTitleText": "login"
+			}
+		},
+		{
+			"path": "pages/referee/manageScore",
+			"style": {
+				"navigationBarTitleText": "管理比分"
+			}
+		},
+		{
+			"path": "pages/home/register",
+			"style": {
+				"navigationBarTitleText": "参赛选手注册"
+			}
+		},
+		{
+			"path": "pages/home/info",
+			"style": {
+				"navigationBarTitleText": "用户信息"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "活动展示"
+			}
+		},
+		{
+			"path": "pages/home/editProfile",
+			"style": {
+				"navigationBarTitleText": "修改信息"
+			}
+		},
+		{
+			"path": "pages/admin/manageChiefReferee",
+			"style": {
+				"navigationBarTitleText": "管理裁判长"
+			}
+		},
+		{
+			"path": "pages/contestant/teamDetail",
+			"style": {
+				"navigationBarTitleText": "队伍详情"
+			}
+		},
+		{
+			"path": "pages/contestant/addList",
+			"style": {
+				"navigationBarTitleText": "参赛选手表"
+			}
+		},
+		{
+			"path": "pages/contestant/createTeam",
+			"style": {
+				"navigationBarTitleText": "创建队伍"
+			}
+		},
+		{
+			"path": "pages/contestant/manageTeam",
+			"style": {
+				"navigationBarTitleText": "管理队伍"
+			}
+		},
+		{
+			"path": "pages/admin/leaderApply",
+			"style": {
+				"navigationBarTitleText": "审核领队申请"
+			}
+		},
+		{
+			"path": "pages/admin/addAdmin",
+			"style": {
+				"navigationBarTitleText": "添加管理员"
+			}
+		},
+		{
+			"path": "pages/admin/manageVenue",
+			"style": {
+				"navigationBarTitleText": "管理场地"
+			}
+		},
+		{
+			"path": "pages/chief_referee/linkActivityAndReferees",
+			"style": {
+				"navigationBarTitleText": "修改活动所属的裁判"
+			}
+		},
+		{
+			"path": "pages/chief_referee/addList",
+			"style": {
+				"navigationBarTitleText": "添加活动所属的裁判"
+			}
+		},
+		{
+			"path": "pages/chief_referee/activityApplication",
+			"style": {
+				"navigationBarTitleText": "管理参加活动的队伍"
+			}
+		},
+		{
+			"path": "pages/chief_referee/manageActivities",
+			"style": {
+				"navigationBarTitleText": "管理活动"
+			}
+		},
+		{
+			"path": "pages/chief_referee/manageReferee",
+			"style": {
+				"navigationBarTitleText": "管理裁判"
+			}
+		},
+		{
+			"path": "pages/referee/manageMatch",
+			"style": {
+				"navigationBarTitleText": "管理比赛"
+			}
+		},
+		{
+			"path": "pages/activities/activitiesTable",
+			"style": {
+				"navigationBarTitleText": "活动表单"
+			}
+		},
+		{
+			"path": "pages/activities/apply",
+			"style": {
+				"navigationBarTitleText": "申请加入比赛"
+			}
+		},
+		{
+			"path": "pages/activities/detail",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
+			"path": "pages/activities/match",
+			"style": {
+				"navigationBarTitleText": "比赛展示"
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "#0000ff",
+		"color": "#C0C0C0",
+		"list": [
+			{
+				"text": "活动",
+				"pagePath": "pages/home/home",
+				"iconPath": "static/imgs/home_default.png",
+				"selectedIconPath": "static/imgs/home_active.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/home/info",
+				"iconPath": "static/imgs/user_default.png",
+				"selectedIconPath": "static/imgs/user_active.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationStyle": "custom"
+	}
+}

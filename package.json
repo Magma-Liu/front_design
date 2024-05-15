@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "sass": "^1.74.1",
+    "sass-loader": "^10.1.1"
+  },
+  "dependencies": {
+    "@dcloudio/uni-ui": "^1.5.5",
+    "jian-pinyin": "^0.2.3",
+    "segmentit": "^2.0.3"
+  }
+}
