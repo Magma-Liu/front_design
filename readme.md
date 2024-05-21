@@ -71,18 +71,18 @@ npm install
 ### 运行项目
 
 ```bash
-npm run dev:mp-weixin
+npm run
 ```
+
+配置appid，`manifest.json`第45行，可参考教程[获取小程序ID](https://weibanzhushou.com/help/2022/05/13/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8Fapp-id/)。
 
 使用 HBuilderX 打开项目目录，在 HBuilderX 中选择运行到微信小程序模拟器。
 
-### 构建项目
+### 上传项目
 
-```bash
-npm run build:mp-weixin
-```
+微信小程序模拟器中点击上传按钮，进行上传，如有代码质量不过关的问题，需要依次解决。
 
-构建后的文件将位于 `dist/build/mp-weixin` 目录中，可以直接上传到微信小程序管理后台。
+上传完毕后在微信开发者平台管理上线。
 
 ## 文件结构
 
@@ -145,6 +145,8 @@ export default {
 ```
 
 根据实际后端服务地址进行调整。
+
+注意，如需上线微信小程序，后端网址需要填写在开发者平台中开发管理的-->>服务器域名中。
 
 ## 常见问题
 
