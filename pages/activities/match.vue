@@ -161,12 +161,10 @@ export default {
 		if (params) {
 			this.event = JSON.parse(params.event);
 			if (params.isChiefReferee) {
-				console.log(1)
 				this.isChiefReferee = true;
 				this.loadData();
 			}
 			if (params.isReferee) {
-				console.log(2)
 				this.isReferee = true;
 				this.getRefereeID();
 			}

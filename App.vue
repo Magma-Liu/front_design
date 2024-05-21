@@ -7,7 +7,6 @@ export default {
 		// baseUrl: 'http://10.26.61.210:8080',
 		// baseUrl: 'http://cyril-liu.natapp1.cc',
 		baseUrl: 'https://liucyril.mynatapp.cc',
-		identityName: ['Contestant', 'ChiefReferee', 'Admin', 'Referee'],
 	},
 	onLaunch: function () {
 		uni.getSystemInfo({

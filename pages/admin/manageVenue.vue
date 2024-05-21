@@ -43,201 +43,195 @@
 </template>
 
 <script>
-	import AdminAPI from '../../api/AdminAPI';
+import AdminAPI from '../../api/AdminAPI';
 
-	export default {
-		data() {
-			return {
-				venues: [],
-				newVenue: {
-					name: '',
-					address: '',
-					area_count: 0
-				},
-				editingIndex: -1
+export default {
+	data() {
+		return {
+			venues: [],
+			newVenue: {
+				name: '',
+				address: '',
+				area_count: 0
+			},
+			editingIndex: -1
+		};
+	},
+	onShow() {
+		this.fetchVenues();
+	},
+	methods: {
+		fetchVenues() {
+			AdminAPI.fetchVenues().then(data => {
+				this.venues = data.data;
+			}).catch(error => {
+				console.error("Error fetching venues:", error);
+			});
+		},
+		addVenue() {
+			AdminAPI.addVenue(this.newVenue).then((res) => {
+				this.fetchVenues();
+				this.resetForm();
+			}).catch(error => {
+				console.error("Error adding venue:", error);
+			});
+		},
+		editVenue(index) {
+			this.newVenue = {
+				...this.venues[index]
 			};
+			this.editingIndex = index;
 		},
-		onShow() {
-			this.fetchVenues();
+		updateVenue() {
+			AdminAPI.updateVenue(this.venues[this.editingIndex].venue_id, this.newVenue).then((res) => {
+				if (res.code === 0) {
+					this.fetchVenues();
+					this.resetForm();
+				} else
+					uni.showToast({
+						title: "操作失败",
+						icon: 'none'
+					});
+			}).catch(error => {
+				console.error("Error updating venue:", error);
+			});
 		},
-		methods: {
-			fetchVenues() {
-				AdminAPI.fetchVenues().then(data => {
-					this.venues = data.data;
-				}).catch(error => {
-					console.error("Error fetching venues:", error);
-				});
-			},
-			addVenue() {
-				AdminAPI.addVenue(this.newVenue).then((res) => {
-					if (res.code === 0) {
-						this.fetchVenues();
-						this.resetForm();
-					} else
-						uni.showToast({
-							title: "添加失败",
-							icon: 'none'
-						});
-				}).catch(error => {
-					console.error("Error adding venue:", error);
-				});
-			},
-			editVenue(index) {
-				this.newVenue = {
-					...this.venues[index]
-				};
-				this.editingIndex = index;
-			},
-			updateVenue() {
-				AdminAPI.updateVenue(this.venues[this.editingIndex].venue_id, this.newVenue).then((res) => {
-					if (res.code === 0) {
-						this.fetchVenues();
-						this.resetForm();
-					} else
-						uni.showToast({
-							title: "操作失败",
-							icon: 'none'
-						});
-				}).catch(error => {
-					console.error("Error updating venue:", error);
-				});
-			},
-			deleteVenue(id) {
-				AdminAPI.deleteVenue(id).then((res) => {
-					if (res.code === 0) {
-						this.fetchVenues();
-					} else
-						uni.showToast({
-							title: "删除失败",
-							icon: 'none'
-						});
-				}).catch(error => {
-					console.error("Error deleting venue:", error);
-				});
-			},
-			resetForm() {
-				this.newVenue = {
-					name: '',
-					address: '',
-					area_count: 0
-				};
-				this.editingIndex = -1;
-			}
+		deleteVenue(id) {
+			AdminAPI.deleteVenue(id).then((res) => {
+				if (res.code === 0) {
+					this.fetchVenues();
+				} else
+					uni.showToast({
+						title: "删除失败",
+						icon: 'none'
+					});
+			}).catch(error => {
+				console.error("Error deleting venue:", error);
+			});
 		},
-	};
+		resetForm() {
+			this.newVenue = {
+				name: '',
+				address: '',
+				area_count: 0
+			};
+			this.editingIndex = -1;
+		}
+	},
+};
 </script>
 
 <style scoped lang="scss">
-	.container {
-		display: flex;
-		flex-direction: column;
-		padding: 10px;
+.container {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
 
-		.btn-warp {
+	.btn-warp {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.btn {
+		width: 49%;
+		height: 78rpx;
+		background: #909399;
+		border-radius: 14rpx;
+		color: white;
+		border: none;
+		font-size: 32rpx;
+		margin: 10rpx auto 0;
+	}
+
+	.save {
+
+		background: linear-gradient(45deg, #0081ff, #1cbbb4);
+	}
+}
+
+.add-venue {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.add-venue input {
+	margin-bottom: 5px;
+}
+
+.venues-list {}
+
+.venue-item {
+	// display: flex;
+	// align-items: center;
+	// margin-bottom: 5px;
+	margin: 10rpx 0;
+	padding: 10rpx 0;
+	border-bottom: 2rpx dashed #dcdfe6;
+}
+
+.venue-item text {
+	// flex: 1;
+}
+
+.input {
+	border: 2rpx solid #e5e5e5;
+	border-radius: 8rpx;
+	height: 70rpx;
+	margin-top: 18rpx;
+	padding-left: 20rpx;
+}
+
+.header {
+	position: relative;
+	padding-left: 15rpx;
+	font-size: 32rpx;
+	color: #161616;
+
+	&::before {
+		content: "";
+		width: 6rpx;
+		height: 24rpx;
+		background: lightblue;
+		border-radius: 8rpx;
+		position: absolute;
+		left: -5rpx;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.top {}
+
+.bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20rpx;
+
+	text {
+		font-size: 28rpx;
+		color: #909399;
+	}
+
+	.btn-warp {
+		.mini-btn {
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: center;
+			color: #ffffff;
+			font-size: 24rpx;
+			width: 80rpx;
+			height: 40rpx;
+			background: #19be6b;
+			border-radius: 6rpx;
+			margin-left: 8rpx;
 		}
 
-		.btn {
-			width: 49%;
-			height: 78rpx;
+		.del {
 			background: #909399;
-			border-radius: 14rpx;
-			color: white;
-			border: none;
-			font-size: 32rpx;
-			margin: 10rpx auto 0;
-		}
-
-		.save {
-
-			background: linear-gradient(45deg, #0081ff, #1cbbb4);
 		}
 	}
-
-	.add-venue {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 10px;
-	}
-
-	.add-venue input {
-		margin-bottom: 5px;
-	}
-
-	.venues-list {}
-
-	.venue-item {
-		// display: flex;
-		// align-items: center;
-		// margin-bottom: 5px;
-		margin: 10rpx 0;
-		padding: 10rpx 0;
-		border-bottom: 2rpx dashed #dcdfe6;
-	}
-
-	.venue-item text {
-		// flex: 1;
-	}
-
-	.input {
-		border: 2rpx solid #e5e5e5;
-		border-radius: 8rpx;
-		height: 70rpx;
-		margin-top: 18rpx;
-		padding-left: 20rpx;
-	}
-
-	.header {
-		position: relative;
-		padding-left: 15rpx;
-		font-size: 32rpx;
-		color: #161616;
-
-		&::before {
-			content: "";
-			width: 6rpx;
-			height: 24rpx;
-			background: lightblue;
-			border-radius: 8rpx;
-			position: absolute;
-			left: -5rpx;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-	}
-
-	.top {}
-
-	.bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-top: 20rpx;
-
-		text {
-			font-size: 28rpx;
-			color: #909399;
-		}
-
-		.btn-warp {
-			.mini-btn {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				color: #ffffff;
-				font-size: 24rpx;
-				width: 80rpx;
-				height: 40rpx;
-				background: #19be6b;
-				border-radius: 6rpx;
-				margin-left: 8rpx;
-			}
-
-			.del {
-				background: #909399;
-			}
-		}
-	}
+}
 </style>
